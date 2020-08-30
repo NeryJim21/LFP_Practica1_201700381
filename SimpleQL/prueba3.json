@@ -1,0 +1,38 @@
+[
+    {
+        "nombre": "registro 6",
+        "edad": 45,
+        "activo": true,
+        "promedio": 56.456
+    },
+    {
+        "nombre": "registro 7",
+        "edad": 35,
+        "activo": false,
+        "promedio": 45.896
+    },
+    {
+        "nombre": "registro 8",
+        "edad": 45,
+        "activo": true,
+        "promedio": 56.456
+    },
+    {
+        "nombre": "registro 9",
+        "edad": 35,
+        "activo": false,
+        "promedio": 45.896
+    },
+    {
+        "nombre": "registro 10",
+        "edad": 45,
+        "activo": true,
+        "promedio": 56.456
+    },
+    {
+        "nombre": "registro 11",
+        "edad": 35,
+        "activo": false,
+        "promedio": 45.896
+    }
+]
