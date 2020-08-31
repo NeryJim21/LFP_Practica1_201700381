@@ -19,9 +19,11 @@ pivote = ''
 
 temp = ''
 ruta = []
+suma = 0
+cantidad = []
 
-#Salida A pantalla
-out = []
+#Salida MAX - MIN
+outM = []
 
 #Items para where
 item = []
@@ -68,22 +70,27 @@ def main():
         select()
 
     elif ingreso[0] == "maximo":
-        print("Maximo")
+        #print("Maximo")
+        maxi()
 
     elif ingreso[0] == "minimo":
-        print("Minimo")
+        #print("Minimo")
+        maxi()
 
     elif ingreso[0] == "suma":
-        print("Suma")
+        #print("Suma")
+        maxi()
 
     elif ingreso[0] == "cuenta":
-        print("Cuenta")
+        #print("Cuenta")
+        count()
 
     elif ingreso[0] == "reportar":
         print("Reportar")
     
     else:
         print(f"El texto es: {ingreso}")
+        main()
 
 
 
@@ -93,7 +100,7 @@ def main():
 
 
 
-# Leer archivo Json
+# Leer archivo Json          --------------------------->      C H E C K
 def readJson():
     print()
     
@@ -116,7 +123,9 @@ def readJson():
        # print(f"Se cargará el archivo {instruccion[x]}" )
        # pausar()
 
-        file = open(instruccion[x],)
+        file = open(instruccion[x],'r')
+        #print(file.read())
+        #pausar()
         archivo = json.load(file)
         file.close
 
@@ -125,6 +134,7 @@ def readJson():
         DB.append(archivo)
 
         print(DB)
+        print()
 
         pausar()
 
@@ -140,13 +150,15 @@ def readJson():
 
     main()
 
-# Comando SELECCIONAR
+# Comando SELECCIONAR        --------------------------->      C H E C K
 def select():
     global item
     #Seleccionar todo
     if instruccion[1] == '*':
         for i in range(0, len(DB)):
+            print()
             print("-----------------------------------------------------------------------------------------------------")
+            print()
             for j in range(0,len(DB[i])):
                # print(DB[i][j])
                 #pausar()
@@ -154,6 +166,7 @@ def select():
               print(f"Nombre: {DB[i][j]['nombre']}, edad: {DB[i][j]['edad']}, activo: {DB[i][j]['activo']}, promedio: {DB[i][j]['promedio']} ")
             print()
             print("-----------------------------------------------------------------------------------------------------")
+            print()
     
     # Seleccionar campos específicos
     elif instruccion[1] != '*': # Verifica campo en específico
@@ -199,7 +212,7 @@ def select():
     pausar()
     main()
 
-# comando DONDE
+# comando DONDE              --------------------------->      C H E C K
 def Donde():
    # print("Where ere e r e")
     global ruta, item
@@ -243,7 +256,9 @@ def Donde():
 
                     #Imprime los atributos seleccionados
                     #print(item)
+                    print()
                     print("-----------------------------------------------------------------------------------------------------")
+                    print()
                     for n in range(0,len(item)):
                         
                         if item[n] == 'nombre':
@@ -255,6 +270,7 @@ def Donde():
                         elif item[n] == 'activo':
                             print(f"Activo: {DB[i][j]['activo']}")
                         #print(n)
+                    print()
                     print("-----------------------------------------------------------------------------------------------------")
                     print()
                     #pausar()
@@ -278,7 +294,75 @@ def Donde():
     
 
     temp = ''
-    print("cadenas vacías")
+    #print("cadenas vacías")
+    pausar()
+    main()
+
+#Comando MAX - MIN           --------------------------->      C H E C K
+def maxi():
+   # print(f"Encontremos el maximo de {instruccion[1]} pue")
+    #pausar()
+    global outM, suma 
+    for n in range(0, len(DB)):
+       # print(f"Respuesta: {DB[n]}")
+        #print("----------------------")
+
+        for m in range(0, len(DB[n])):
+            #print(f"Respuesta 2: {DB[n][m][instruccion[1]]}")
+
+            # Ingresa todos los datos de instruccion[1] a una lista
+            outM.append(DB[n][m][instruccion[1]])
+            
+           # print("-----------------")
+    
+   # print(outM)
+    #Ordena ascendentemente la lista
+    outM.sort()
+    print()
+    print("-----------------------------------------------------------------------------------------------------")
+    print()
+    if instruccion[0] == 'maximo':
+       
+        print(f"{instruccion[1]}: {max(outM)}")
+        
+    elif instruccion[0] == 'minimo':
+        print(f"{instruccion[1]}: {min(outM)}")
+        
+    elif instruccion[0] == 'suma':
+        for i in outM:
+            suma = suma + i
+        print(f"La suma de {instruccion[1]} es: {suma}")
+        suma = 0
+        
+
+    else:
+        print("No se encontró registro")
+       
+    print()
+    print("-----------------------------------------------------------------------------------------------------")
+    print()
+
+    #print(f"  {instruccion[1]} máxima: {max(outM)}")
+    #print(f" Valor mínimo: {min(outM)}")
+    outM = []
+    pausar()
+    main()
+
+# comando CUENTA             --------------------------->      C H E C K
+def count():
+    global cantidad
+    print()
+    print("-----------------------------------------------------------------------------------------------------")
+    print()
+    for m in range(0, len(DB)):
+        for n in range(0, len(DB[m])):
+            cantidad.append(n)
+            
+    print(f"Se han realizado {len(cantidad)} registros en la base de datos ")
+    print()
+    print("-----------------------------------------------------------------------------------------------------")
+    print()
+    cantidad = []
     pausar()
     main()
 
